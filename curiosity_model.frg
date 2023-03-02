@@ -59,12 +59,11 @@ Predicate that combines all of the above conditions to find the "Max Complexity 
 pred maxComplexityPattern[n : Int] {
     n >= 4
     wellFormed[n]
-    useDots[n]
-    androidLockPattern
+    useDots[multiply[n, n]]
+    // androidLockPattern
     allDiffSlopes
 }
 
 run {
-    wellFormed[3]
-    allDiffSlopes
+    maxComplexityPattern[3]
 } for exactly 9 Dot, 3 Int  for { next is linear }

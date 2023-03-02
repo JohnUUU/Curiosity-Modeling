@@ -246,14 +246,14 @@ test suite for maxComplexityPattern {
         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D6 + `D6 -> `D7 + `D7 -> `D8 + `D8 -> `D9
     }
 
-    example SLock is {not maxComplexityPattern} for { 
+    example SLockNotMaxComplex is {not maxComplexityPattern} for { 
         #Int = 5
         Dot = `D1 + `D2 + `D3 + `D4 + `D5 + `D6 + `D7 + `D8 + `D9
         row = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 1 + `D6 -> 1 + `D7 -> 2 + `D8 -> 2 + `D9 -> 2
         col = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 1 + `D6 -> 0 + `D7 -> 0 + `D8 -> 1 + `D9 -> 2
         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D6 + `D6 -> `D7 + `D7 -> `D8 + `D8 -> `D9
     }
-    example SkipLock is {not maxComplexityPattern} for { 
+    example SkipLockNotMaxComplex is {not maxComplexityPattern} for { 
         #Int = 5
         Dot = `D1 + `D2 + `D3 + `D4 + `D5
         row = `D1 -> 1 + `D2 -> 0 + `D3 -> 1 + `D4 -> 0 + `D5 -> 0
