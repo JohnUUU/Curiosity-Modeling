@@ -50,6 +50,23 @@ There are 4 rules for Android Lock Patterns
     have been used. 
 */
 pred androidLockPattern {
+     all d:Dot | {
+        !reachable[d, d, next]
+        // #{d1 : Dot | {d1.next = d}} <= 1
+        // all disj d1, d2 : Dot |  {
+        //     (d != d1 and d != d2 and 
+        //     (multiply[subtract[d1.col, d.col], subtract[d2.row, d.row]] = 
+        //     multiply[subtract[d1.row, d.row], subtract[d2.col, d.col]]) and 
+        //     (d2.row >= d.row => d2.row >= d1.row else d2.row < d1.row) and 
+        //     (d2.col >= d.col => d2.col >= d1.col else d2.col < d1.col) and 
+        //     (some d1.next or (some d3 : Dot | {d3.next = d1}))
+        //     )  => {
+        //         reachable[d2, d1, next]
+        //     }
+        // }
+     }
+    useDots[4]
+
 
 }
 
@@ -57,13 +74,13 @@ pred androidLockPattern {
 Predicate that combines all of the above conditions to find the "Max Complexity Locks"
 */
 pred maxComplexityPattern[n : Int] {
-    n >= 4
+    n >= 1
     wellFormed[n]
     useDots[multiply[n, n]]
-    // androidLockPattern
+    androidLockPattern
     allDiffSlopes
 }
 
 run {
     maxComplexityPattern[3]
-} for exactly 9 Dot, 3 Int  for { next is linear }
+} for exactly 9 Dot, 5 Int  for { next is linear }
