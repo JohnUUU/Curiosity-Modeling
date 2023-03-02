@@ -60,20 +60,6 @@ test suite for wellFormed {
         col = `D1 -> 2 + `D2 -> 1 + `D3 -> -1
         next = `D1 -> `D2 + `D2 -> `D3
     }
-
-    example selfLoop is {not wellFormed[3]} for {
-        Dot = `D1 + `D2 + `D3
-        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 1
-        col = `D1 -> 2 + `D2 -> 1 + `D3 -> -1
-        next = `D1 -> `D1
-    }
-
-    example biggerSelfLoop is {not wellFormed[3]} for {
-        Dot = `D1 + `D2 + `D3
-        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 1
-        col = `D1 -> 2 + `D2 -> 1 + `D3 -> -1
-        next = `D1 -> `D2 + `D2 -> `D1
-    }
 }
 
 test suite for allDiffSlopes {
@@ -154,64 +140,57 @@ test suite for useDots {
     }
 }
 
-// test suite for androidLockPattern {
-//     example LLock is {androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5
-//         row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
-//         col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
-//         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 
-//     }
-//     example SLock is {androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5 + `D6 + `D7 + `D8 + `D9
-//         row = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 1 + `D6 -> 1 + `D7 -> 2 + `D8 -> 2 + `D9 -> 2
-//         col = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 1 + `D6 -> 0 + `D7 -> 0 + `D8 -> 1 + `D9 -> 2
-//         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D6 + `D6 -> `D7 + `D7 -> `D8 + `D8 -> `D9
-//     }
-//     example SkipLock is {androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5
-//         row = `D1 -> 1 + `D2 -> 0 + `D3 -> 1 + `D4 -> 0 + `D5 -> 0
-//         col = `D1 -> 1 + `D2 -> 1 + `D3 -> 0 + `D4 -> 0 + `D5 -> 2 
-//         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5
-//     }
+test suite for androidLockPattern {
+    example LLock is {androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3 + `D4 + `D5
+        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
+        col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
+        next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 
+    }
+    example SLock is {androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3 + `D4 + `D5 + `D6 + `D7 + `D8 + `D9
+        row = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 1 + `D6 -> 1 + `D7 -> 2 + `D8 -> 2 + `D9 -> 2
+        col = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 1 + `D6 -> 0 + `D7 -> 0 + `D8 -> 1 + `D9 -> 2
+        next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D6 + `D6 -> `D7 + `D7 -> `D8 + `D8 -> `D9
+    }
+    example SkipLock is {androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3 + `D4 + `D5
+        row = `D1 -> 1 + `D2 -> 0 + `D3 -> 1 + `D4 -> 0 + `D5 -> 0
+        col = `D1 -> 1 + `D2 -> 1 + `D3 -> 0 + `D4 -> 0 + `D5 -> 2 
+        next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5
+    }
 
-//     example badVac is {not androidLockPattern} for { }
+    example badVac is {not androidLockPattern} for { }
     
-//     example LineLock is {not androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3
-//         row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 
-//         col = `D1 -> 0 + `D2 -> 1 + `D3 -> 2
-//         next = `D1 -> `D2 + `D2 -> `D3
-//     }
+    example LineLock is {not androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3
+        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 
+        col = `D1 -> 0 + `D2 -> 1 + `D3 -> 2
+        next = `D1 -> `D2 + `D2 -> `D3
+    }
 
-//     example selfLooping is {not androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5
-//         row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
-//         col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
-//         next = `D1 -> `D1 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 
-//     }
+    example selfLooping is {not androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3 + `D4 + `D5
+        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
+        col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
+        next = `D1 -> `D1 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 
+    }
 
-//     example badLooping is {not androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5
-//         row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
-//         col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
-//         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D1
-//     }
+    example badLooping is {not androidLockPattern} for { 
+        #Int = 5
+        Dot = `D1 + `D2 + `D3 + `D4 + `D5
+        row = `D1 -> 0 + `D2 -> 1 + `D3 -> 2 + `D4 -> 2 + `D5 -> 2 
+        col = `D1 -> 0 + `D2 -> 0 + `D3 -> 0 + `D4 -> 1 + `D5 -> 2 
+        next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5 + `D5 -> `D1
+    }
 
-//     example badSkipLock is {not androidLockPattern} for { 
-//         #Int = 5
-//         Dot = `D1 + `D2 + `D3 + `D4 + `D5
-//         row = `D1 -> 1 + `D2 -> 2 + `D3 -> 2 + `D4 -> 2 + `D5 -> 1
-//         col = `D1 -> 1 + `D2 -> 2 + `D3 -> 0 + `D4 -> 1 + `D5 -> 0
-//         next = `D1 -> `D2 + `D2 -> `D3 + `D3 -> `D4 + `D4 -> `D5
-//     }
 
-// }
+}
 
 test suite for maxComplexityPattern {
     example maxComplex is {maxComplexityPattern[3]} for { 

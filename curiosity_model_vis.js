@@ -32,7 +32,7 @@ for (const ind in dots.tuples()) {
     const r = +dot.join(row).toString()
     const c = +dot.join(col).toString()
     ctx.beginPath();
-    ctx.arc(canvas.width / 6 + c * canvas.width / 3, canvas.width / 24 + r * canvas.width / 12, 1, 0, 2 * Math.PI);
+    ctx.arc(canvas.width / (2 * n) + c * canvas.width / n, canvas.width / (8 * n) + r * canvas.width / (4 * n), 1, 0, 2 * Math.PI);
     ctx.fill();
     if (dot.join(next).toString() != '') {
         const nextDot = dot.join(next)
@@ -40,10 +40,10 @@ for (const ind in dots.tuples()) {
         const nc = +nextDot.join(col).toString()
         console.log(dot.toString(), nextDot.toString())
         console.log(r, c, nr, nc)
-        drawArrow(ctx, canvas.width / 6 + c * canvas.width / 3,
-            canvas.width / 24 + r * canvas.width / 12,
-            canvas.width / 6 + nc * canvas.width / 3,
-            canvas.width / 24 + nr * canvas.width / 12, 1, 'red');
+        drawArrow(ctx, canvas.width / (2 * n) + c * canvas.width / n,
+            canvas.width / (8 * n) + r * canvas.width / (4 * n),
+            canvas.width / (2 * n) + nc * canvas.width / n,
+            canvas.width / (8 * n) + nr * canvas.width / (4 * n), 1, 'red');
     }
 }
 

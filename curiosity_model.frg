@@ -34,7 +34,6 @@ pred wellFormed[n : Int] {
     n > 0
     all d:Dot | {
         d.row < n and d.row >=0 and d.col >=0 and d.col < n 
-        !reachable[d, d, next]
     }
     all disj d1, d2: Dot | {
         d1.row = d2.row => d1.col != d2.col
@@ -46,28 +45,12 @@ There are 4 rules for Android Lock Patterns
     1. We cannot use one dot more than once 
     2. A Pattern must use at least 4 dots 
     3. The order of the Pattern matters and counts as distinct patterns
-    4. No Skipping Dots, If connecting a dot to another dot goes through a third dot. The third dot must already 
-    have been used. 
 */
 pred androidLockPattern {
      all d:Dot | {
         !reachable[d, d, next]
-        // #{d1 : Dot | {d1.next = d}} <= 1
-        // all disj d1, d2 : Dot |  {
-        //     (d != d1 and d != d2 and 
-        //     (multiply[subtract[d1.col, d.col], subtract[d2.row, d.row]] = 
-        //     multiply[subtract[d1.row, d.row], subtract[d2.col, d.col]]) and 
-        //     (d2.row >= d.row => d2.row >= d1.row else d2.row < d1.row) and 
-        //     (d2.col >= d.col => d2.col >= d1.col else d2.col < d1.col) and 
-        //     (some d1.next or (some d3 : Dot | {d3.next = d1}))
-        //     )  => {
-        //         reachable[d2, d1, next]
-        //     }
-        // }
      }
     useDots[4]
-
-
 }
 
 /*
@@ -81,6 +64,9 @@ pred maxComplexityPattern[n : Int] {
     allDiffSlopes
 }
 
+
+
 run {
     maxComplexityPattern[3]
-} for exactly 9 Dot, 5 Int  for { next is linear }
+} for 9 Dot, 6 Int for { next is linear }
+
