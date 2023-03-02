@@ -65,8 +65,33 @@ pred maxComplexityPattern[n : Int] {
 }
 
 
+// Find a valid 3x3 androidLockPattern 
+// You can check it against https://tympanix.github.io/pattern-lock-js/
+run {
+    wellFormed[3]
+    androidLockPattern
+} for 9 Dot, 5 Int for { next is linear }
+
+
+// Find the Max Complexity Pattern for the 2x2, 3x3 and 4x4 case. 
+run {
+    maxComplexityPattern[2]
+} for 4 Dot, 4 Int for { next is linear }
 
 run {
     maxComplexityPattern[3]
-} for 9 Dot, 6 Int for { next is linear }
+} for 9 Dot, 5 Int for { next is linear }
+
+
+// NOTE: 4x4 may take a while to load because of the increased search space. 
+run {
+    maxComplexityPattern[4]
+} for 16 Dot, 6 Int for { next is linear }
+
+
+// TO RUN IT FOR A N x N Lockscreen, just replace n and set the appropriate bidthwidth below. 
+// run {
+//     maxComplexityPattern[n]
+// } for n^2 Dot, [Whatever BidthWidth is big enough] Int for { next is linear }
+
 
